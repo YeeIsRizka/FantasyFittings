@@ -41,12 +41,13 @@ public class Register extends javax.swing.JFrame {
         LabelUsername = new javax.swing.JLabel();
         LabelPassword = new javax.swing.JLabel();
         LabelKonfirmasiPassword = new javax.swing.JLabel();
-        PesanLogin = new javax.swing.JLabel();
-        Background = new javax.swing.JLabel();
-        TombolLogin = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
+        BackGround = new javax.swing.JLabel();
+        TombolLogin = new javax.swing.JLabel();
+        PesanLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 380));
 
         TombolRegister.setBackground(new java.awt.Color(0, 153, 255));
         TombolRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -68,7 +69,14 @@ public class Register extends javax.swing.JFrame {
         LabelKonfirmasiPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelKonfirmasiPassword.setText("Konfirmasi Password");
 
-        PesanLogin.setText("Sudah punya akun?");
+        Title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Title.setText("Register");
+
+        BackGround.setBackground(new java.awt.Color(0, 0, 0));
+        BackGround.setForeground(new java.awt.Color(255, 255, 255));
+        BackGround.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-name-2.png"))); // NOI18N
+        BackGround.setOpaque(true);
 
         TombolLogin.setForeground(new java.awt.Color(0, 102, 204));
         TombolLogin.setText("Login");
@@ -78,18 +86,22 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        Title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        Title.setText("Register");
+        PesanLogin.setText("Sudah punya akun?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PesanLogin)
+                        .addGap(7, 7, 7)
+                        .addComponent(TombolLogin)
+                        .addGap(64, 64, 64))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelUsername)
                             .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,26 +109,18 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LabelKonfirmasiPassword)
                             .addComponent(KPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TombolRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(PesanLogin)
-                                .addGap(7, 7, 7)
-                                .addComponent(TombolLogin))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(Title)))
-                .addGap(14, 14, 14))
+                            .addComponent(TombolRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Title)
+                        .addGap(86, 86, 86))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Background)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(Title)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(LabelUsername)
                 .addGap(4, 4, 4)
                 .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,11 +134,12 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(KPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(TombolRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PesanLogin)
                     .addComponent(TombolLogin))
-                .addGap(51, 51, 51))
+                .addGap(49, 49, 49))
+            .addComponent(BackGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -240,7 +245,7 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Background;
+    private javax.swing.JLabel BackGround;
     private javax.swing.JPasswordField KPassword;
     private javax.swing.JLabel LabelKonfirmasiPassword;
     private javax.swing.JLabel LabelPassword;
