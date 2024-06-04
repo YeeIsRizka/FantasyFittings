@@ -56,6 +56,7 @@ public class Login extends javax.swing.JFrame {
         BackGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(600, 380));
 
         TombolLogin.setBackground(new java.awt.Color(0, 153, 255));
