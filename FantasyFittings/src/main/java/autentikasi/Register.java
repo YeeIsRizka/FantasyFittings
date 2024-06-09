@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ASUS
+ * @author Rafly Ivan Khalfani
  */
 public class Register extends javax.swing.JFrame {
 
@@ -48,6 +48,7 @@ public class Register extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 380));
+        setResizable(false);
 
         TombolRegister.setBackground(new java.awt.Color(0, 153, 255));
         TombolRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
