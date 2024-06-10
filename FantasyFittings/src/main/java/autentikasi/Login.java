@@ -14,7 +14,7 @@ import main.Dashboard;
 
 /**
  *
- * @author ASUS
+ * @author Rafly Ivan Khalfani
  */
 public class Login extends javax.swing.JFrame {
     private int userId;
@@ -58,6 +58,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(600, 380));
+        setResizable(false);
 
         TombolLogin.setBackground(new java.awt.Color(0, 153, 255));
         TombolLogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
