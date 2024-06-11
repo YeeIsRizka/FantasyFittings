@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Rizka Alfadillla
+ * @author Akwan Cakra Tajimalela
  */
 public class Pelanggan extends javax.swing.JFrame {
 
@@ -63,10 +63,6 @@ public class Pelanggan extends javax.swing.JFrame {
         pn_line4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        pn_btnPengguna = new javax.swing.JPanel();
-        pn_line5 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         Logout = new javax.swing.JLabel();
         pn_body = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -124,6 +120,11 @@ public class Pelanggan extends javax.swing.JFrame {
         );
 
         pn_user.setBackground(new java.awt.Color(255, 255, 255));
+        pn_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_userMouseClicked(evt);
+            }
+        });
 
         dash_user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dash_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
@@ -151,6 +152,9 @@ public class Pelanggan extends javax.swing.JFrame {
 
         pn_btnDashboard.setBackground(new java.awt.Color(255, 255, 255));
         pn_btnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_btnDashboardMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pn_btnDashboardMouseEntered(evt);
             }
@@ -205,6 +209,9 @@ public class Pelanggan extends javax.swing.JFrame {
 
         pn_btnOutfit.setBackground(new java.awt.Color(255, 255, 255));
         pn_btnOutfit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_btnOutfitMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pn_btnOutfitMouseEntered(evt);
             }
@@ -259,6 +266,9 @@ public class Pelanggan extends javax.swing.JFrame {
 
         pn_btnPenyewaan.setBackground(new java.awt.Color(255, 255, 255));
         pn_btnPenyewaan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_btnPenyewaanMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pn_btnPenyewaanMouseEntered(evt);
             }
@@ -313,6 +323,9 @@ public class Pelanggan extends javax.swing.JFrame {
 
         pn_btnPelanggan.setBackground(new java.awt.Color(255, 255, 255));
         pn_btnPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_btnPelangganMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pn_btnPelangganMouseEntered(evt);
             }
@@ -367,6 +380,9 @@ public class Pelanggan extends javax.swing.JFrame {
 
         pn_btnPembayaran.setBackground(new java.awt.Color(255, 255, 255));
         pn_btnPembayaran.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_btnPembayaranMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pn_btnPembayaranMouseEntered(evt);
             }
@@ -419,60 +435,6 @@ public class Pelanggan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pn_btnPengguna.setBackground(new java.awt.Color(255, 255, 255));
-        pn_btnPengguna.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pn_btnPenggunaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pn_btnPenggunaMouseExited(evt);
-            }
-        });
-
-        pn_line5.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pn_line5Layout = new javax.swing.GroupLayout(pn_line5);
-        pn_line5.setLayout(pn_line5Layout);
-        pn_line5Layout.setHorizontalGroup(
-            pn_line5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 8, Short.MAX_VALUE)
-        );
-        pn_line5Layout.setVerticalGroup(
-            pn_line5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pengguna.png"))); // NOI18N
-
-        jLabel13.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel13.setText("Pengguna");
-
-        javax.swing.GroupLayout pn_btnPenggunaLayout = new javax.swing.GroupLayout(pn_btnPengguna);
-        pn_btnPengguna.setLayout(pn_btnPenggunaLayout);
-        pn_btnPenggunaLayout.setHorizontalGroup(
-            pn_btnPenggunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_btnPenggunaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pn_line5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pn_btnPenggunaLayout.setVerticalGroup(
-            pn_btnPenggunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_btnPenggunaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_btnPenggunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_btnPenggunaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel12))
-                    .addComponent(pn_line5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
         Logout.setForeground(new java.awt.Color(0, 51, 204));
         Logout.setText("Logout");
         Logout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -497,8 +459,7 @@ public class Pelanggan extends javax.swing.JFrame {
                     .addComponent(pn_btnOutfit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pn_btnPenyewaan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pn_btnPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pn_btnPembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pn_btnPengguna, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pn_btnPembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(pn_user, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -518,9 +479,7 @@ public class Pelanggan extends javax.swing.JFrame {
                 .addComponent(pn_btnPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pn_btnPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pn_btnPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addComponent(Logout)
                 .addGap(25, 25, 25))
         );
@@ -1005,18 +964,6 @@ public class Pelanggan extends javax.swing.JFrame {
         pn_line4.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_pn_btnPembayaranMouseExited
 
-    private void pn_btnPenggunaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPenggunaMouseEntered
-        // TODO add your handling code here:
-        pn_btnPengguna.setBackground(new Color(250, 250, 250));
-        pn_line5.setBackground(new Color(0,0,0));
-    }//GEN-LAST:event_pn_btnPenggunaMouseEntered
-
-    private void pn_btnPenggunaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPenggunaMouseExited
-        // TODO add your handling code here:
-        pn_btnPengguna.setBackground(new Color(255, 255, 255));
-        pn_line5.setBackground(new Color(255, 255, 255));
-    }//GEN-LAST:event_pn_btnPenggunaMouseExited
-
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
         // TODO add your handling code here:
         new Login().setVisible(true); //Meredirect ke object Register
@@ -1336,6 +1283,36 @@ public class Pelanggan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    private void pn_btnDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnDashboardMouseClicked
+        new Dashboard().setVisible(true); //Meredirect ke object Dashboard
+        this.dispose();
+    }//GEN-LAST:event_pn_btnDashboardMouseClicked
+
+    private void pn_btnOutfitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnOutfitMouseClicked
+        new Outfit().setVisible(true); //Meredirect ke object Outfit
+        this.dispose();
+    }//GEN-LAST:event_pn_btnOutfitMouseClicked
+
+    private void pn_btnPenyewaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPenyewaanMouseClicked
+        new Penyewaan().setVisible(true); //Meredirect ke object Penyewaan
+        this.dispose();
+    }//GEN-LAST:event_pn_btnPenyewaanMouseClicked
+
+    private void pn_btnPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPelangganMouseClicked
+        new Pelanggan().setVisible(true); //Meredirect ke object Pelanggan
+        this.dispose();
+    }//GEN-LAST:event_pn_btnPelangganMouseClicked
+
+    private void pn_btnPembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPembayaranMouseClicked
+        new Pembayaran().setVisible(true); //Meredirect ke object Pembayaran
+        this.dispose();
+    }//GEN-LAST:event_pn_btnPembayaranMouseClicked
+
+    private void pn_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_userMouseClicked
+        new Pengguna().setVisible(true); //Meredirect ke object Pengguna
+        this.dispose();
+    }//GEN-LAST:event_pn_userMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1404,8 +1381,6 @@ public class Pelanggan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1433,14 +1408,12 @@ public class Pelanggan extends javax.swing.JFrame {
     private javax.swing.JPanel pn_btnOutfit;
     private javax.swing.JPanel pn_btnPelanggan;
     private javax.swing.JPanel pn_btnPembayaran;
-    private javax.swing.JPanel pn_btnPengguna;
     private javax.swing.JPanel pn_btnPenyewaan;
     private javax.swing.JPanel pn_line;
     private javax.swing.JPanel pn_line1;
     private javax.swing.JPanel pn_line2;
     private javax.swing.JPanel pn_line3;
     private javax.swing.JPanel pn_line4;
-    private javax.swing.JPanel pn_line5;
     private javax.swing.JPanel pn_logo;
     private javax.swing.JPanel pn_sidebar;
     private javax.swing.JPanel pn_user;
