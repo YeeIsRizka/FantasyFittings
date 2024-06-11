@@ -304,6 +304,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setText("Penyewaan");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pn_btnPenyewaanLayout = new javax.swing.GroupLayout(pn_btnPenyewaan);
         pn_btnPenyewaan.setLayout(pn_btnPenyewaanLayout);
@@ -967,6 +972,10 @@ public class Dashboard extends javax.swing.JFrame {
         new Pengguna().setVisible(true); //Meredirect ke object Pengguna
         this.dispose();
     }//GEN-LAST:event_pn_userMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
     
     
     public void CountStatOutfitType(){
