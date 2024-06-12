@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import main.Dashboard;
+import main.MenuUtama;
 
 /**
  *
@@ -196,10 +196,11 @@ public class Login extends javax.swing.JFrame {
             if (hasilSQL.next()) {
                 // Kondisi Berhasil
                 userId = hasilSQL.getInt("id");  // Simpan id pengguna yang berhasil login
+                String username = hasilSQL.getString("username");
                 JOptionPane.showMessageDialog(null, "Login Berhasil, ID: " + userId);
 
                 // Pass userId to DashboardPengguna
-                Dashboard dashboardLogin = new Dashboard();
+                MenuUtama dashboardLogin = new MenuUtama(username);
                 dashboardLogin.setVisible(true); //Meredirect ke object dashboard
                 this.dispose(); // Menutup window login
             } else {
