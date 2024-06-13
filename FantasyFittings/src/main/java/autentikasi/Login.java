@@ -57,7 +57,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 380));
         setResizable(false);
 
         TombolLogin.setBackground(new java.awt.Color(0, 153, 255));
@@ -162,6 +161,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void clearForm() {
         Username.setText("");
