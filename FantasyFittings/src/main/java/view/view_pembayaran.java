@@ -218,6 +218,7 @@ public class view_pembayaran extends javax.swing.JPanel {
 
         tanggal.setInheritsPopupMenu(true);
 
+        pembayaran.setEditable(false);
         pembayaran.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pembayaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,7 +542,7 @@ public class view_pembayaran extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1607, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pn_body, javax.swing.GroupLayout.DEFAULT_SIZE, 1607, Short.MAX_VALUE))
+                .addComponent(pn_body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

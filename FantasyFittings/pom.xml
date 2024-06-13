@@ -15,16 +15,19 @@
             <groupId>mysql-connector-java-8.4.0</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.4.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>jcalendar-1.4</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>datechooser-swing-1.4.2</groupId>
             <artifactId>datechooser-swing-1.4.2</artifactId>
             <version>1.4.2</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.mindrot</groupId>
