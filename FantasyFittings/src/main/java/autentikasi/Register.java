@@ -50,10 +50,10 @@ public class Register extends javax.swing.JFrame {
         BackGround = new javax.swing.JLabel();
         TombolLogin = new javax.swing.JLabel();
         PesanLogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 380));
         setResizable(false);
 
         TombolRegister.setBackground(new java.awt.Color(0, 153, 255));
@@ -95,6 +95,13 @@ public class Register extends javax.swing.JFrame {
 
         PesanLogin.setText("Sudah punya akun?");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,14 +127,22 @@ public class Register extends javax.swing.JFrame {
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Title)
-                        .addGap(86, 86, 86))))
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(Title)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(33, Short.MAX_VALUE)
+                        .addComponent(Title)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(LabelUsername)
                 .addGap(4, 4, 4)
                 .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,50 +175,71 @@ public class Register extends javax.swing.JFrame {
     
     private void TombolRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolRegisterActionPerformed
         try {
-            // 01. Tangkap variabel inputan 
+            // Tangkap variabel inputan 
             String uname = Username.getText();
             String pw = new String(Password.getPassword());
             String kpw = new String(KPassword.getPassword());
 
-            // 01.1. Konfirmasi Inputan
+            // Konfirmasi Inputan
             if (!pw.equals(kpw)) {
                 JOptionPane.showMessageDialog(null, "Pastikan konfirmasi password sesuai");
                 return;
             }
-
-            // 02. Query SQL - INSERT
+            
+            // Memastikan Panjang password >8
+            if (pw.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Password harus terdiri dari minimal 8 karakter");
+            return;
+            }
+            
+            // Query SQL - INSERT
             String perintahInsert_SQL = "INSERT INTO pengguna (username, password) VALUES (?, ?)";
 
-            // 03. Menghubungkan SQL - Java
+            // Menghubungkan SQL - Java
             Connection penghubung = koneksiDB.konfigurasi_koneksiDB();
             if (penghubung == null) {
                 JOptionPane.showMessageDialog(null, "Koneksi ke database gagal. Silakan cek konfigurasi database Anda.");
                 return;
             }
 
-            // 04. Membuat PreparedStatement
-            PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahInsert_SQL);
-            pernyataanSQL.setString(1, uname);
-            pernyataanSQL.setString(2, pw);
+            // Menggunakan transaction untuk validasi data
+            penghubung.setAutoCommit(false); // Start transaction
 
-            // 05. Mengeksekusi perintah SQL
-            int rowsInserted = pernyataanSQL.executeUpdate();
+            try {
+                // Buat PreparedStatement
+                PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahInsert_SQL);
+                pernyataanSQL.setString(1, uname);
+                pernyataanSQL.setString(2, pw);
 
-            // 06. Validasi data SQL
-            if (rowsInserted > 0) {
-                // Kondisi Berhasil
-                JOptionPane.showMessageDialog(null, "Register Berhasil");
-                new Login().setVisible(true); //Meredirect ke object Login
-                this.dispose(); // Menutup window login
-            } else {
-                // Kondisi Gagal 
-                JOptionPane.showMessageDialog(null, "Gagal melakukan registrasi");
-                clearForm();
+                // Eksekusi command SQL
+                int rowsInserted = pernyataanSQL.executeUpdate();
+
+                // Validasi data SQL
+                if (rowsInserted > 0) {
+                    // Commit transaction
+                    penghubung.commit();
+
+                    // Success condition
+                    JOptionPane.showMessageDialog(null, "Register Berhasil");
+                    new Login().setVisible(true); // Redirect to Login object
+                    this.dispose(); // Close login window
+                } else {
+                    // Failure condition
+                    JOptionPane.showMessageDialog(null, "Gagal melakukan registrasi");
+                    clearForm();
+                }
+
+                // Close pernyataanSQL
+                pernyataanSQL.close();
+            } catch (SQLException e) {
+                // Rollback transaction saat terjadi error
+                penghubung.rollback();
+                JOptionPane.showMessageDialog(null, "Registrasi Gagal \n" + e.getMessage());
+            } finally {
+                // Mengembalikan auto-commit ke mode on dan close connection
+                penghubung.setAutoCommit(true);
+                penghubung.close();
             }
-
-            // Tutup pernyataanSQL dan penghubung
-            pernyataanSQL.close();
-            penghubung.close();
 
         } catch (SQLException e) {
             // 07. Exception()
@@ -215,6 +251,11 @@ public class Register extends javax.swing.JFrame {
         new Login().setVisible(true); //Meredirect ke object Register
         this.dispose();
     }//GEN-LAST:event_TombolLoginMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -264,5 +305,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel TombolLogin;
     private javax.swing.JToggleButton TombolRegister;
     private javax.swing.JTextField Username;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

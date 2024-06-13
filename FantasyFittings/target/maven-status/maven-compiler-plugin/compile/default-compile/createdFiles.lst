@@ -1,3 +1,4 @@
+autentikasi\Register$4.class
 view\view_pelanggan$7.class
 main\MenuUtama$1.class
 view\view_pelanggan$11.class
@@ -28,6 +29,7 @@ view\view_pelanggan$10.class
 main\MenuUtama$7.class
 view\view_outfit$1.class
 view\view_penyewaan$7.class
+autentikasi\Login$5.class
 autentikasi\LupaPW$2.class
 view\view_pelanggan$6.class
 autentikasi\Register$3.class
@@ -54,6 +56,7 @@ view\view_pelanggan$9.class
 view\view_outfit$4.class
 view\view_outfit$3.class
 com\mycompany\FantasyFittings\FantasyFittings.class
+view\view_penyewaan$13.class
 view\view_pelanggan$2.class
 view\view_pembayaran$6.class
 main\MenuUtama$3.class
@@ -76,5 +79,6 @@ autentikasi\Login$3.class
 view\view_dashboard.class
 main\MenuUtama$2.class
 view\view_outfit$2.class
+autentikasi\LupaPW$4.class
 view\view_outfit$5.class
 view\view_pelanggan$8.class

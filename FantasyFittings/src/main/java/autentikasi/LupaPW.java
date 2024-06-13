@@ -28,6 +28,7 @@ public class LupaPW extends javax.swing.JFrame {
         Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
         setIconImage(icon);
         setTitle("Fantasy Fittings - Forgot Password");
+
     }
 
     /**
@@ -50,10 +51,10 @@ public class LupaPW extends javax.swing.JFrame {
         TombolLogin = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
         BackGround = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 380));
         setResizable(false);
 
         TombolRenew.setBackground(new java.awt.Color(0, 153, 255));
@@ -96,6 +97,13 @@ public class LupaPW extends javax.swing.JFrame {
         BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-name-2.png"))); // NOI18N
         BackGround.setOpaque(true);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,15 +128,23 @@ public class LupaPW extends javax.swing.JFrame {
                         .addComponent(TombolLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(Title)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(Title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(Title)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(33, Short.MAX_VALUE)
+                        .addComponent(Title)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(LabelUsername)
                 .addGap(4, 4, 4)
                 .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,50 +177,65 @@ public class LupaPW extends javax.swing.JFrame {
     
     private void TombolRenewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolRenewActionPerformed
         try {
-            // 01. Tangkap variabel inputan 
+            // Tangkap variabel inputan 
             String uname = Username.getText();
             String pw = new String(PasswordB.getPassword());
             String kpw = new String(KPasswordB.getPassword());
 
-            // 01.1. Konfirmasi Inputan
+            // Konfirmasi Inputan
             if (!pw.equals(kpw)) {
                 JOptionPane.showMessageDialog(null, "Pastikan konfirmasi password sesuai");
                 return;
             }
 
-            // 02. Query SQL - INSERT
+            // Query SQL - INSERT
             String perintahUpdate_SQL = "UPDATE pengguna SET password = ? WHERE username = ?";
 
-            // 03. Menghubungkan SQL - Java
+            // Menghubungkan SQL - Java
             Connection penghubung = koneksiDB.konfigurasi_koneksiDB();
             if (penghubung == null) {
                 JOptionPane.showMessageDialog(null, "Koneksi ke database gagal. Silakan cek konfigurasi database Anda.");
                 return;
             }
 
-            // 04. Membuat PreparedStatement
-            PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahUpdate_SQL);
-            pernyataanSQL.setString(1, pw);
-            pernyataanSQL.setString(2, uname);
+            // Menggunakan transaction untuk validasi data
+            penghubung.setAutoCommit(false); // Start transaction
 
-            // 05. Mengeksekusi perintah SQL
-            int rowsUpdated = pernyataanSQL.executeUpdate();
+            try {
+                // Buat PreparedStatement
+                PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahUpdate_SQL);
+                pernyataanSQL.setString(1, pw);
+                pernyataanSQL.setString(2, uname);
 
-            // 06. Validasi data SQL
-            if (rowsUpdated > 0) {
-                // Kondisi Berhasil
-                JOptionPane.showMessageDialog(null, "Pembaruan Password Berhasil.");
-                new Login().setVisible(true); //Meredirect ke object Login
-                this.dispose(); // Menutup window login
-            } else {
-                // Kondisi Gagal 
-                JOptionPane.showMessageDialog(null, "Gagal Memperbarui Password.");
-                clearForm();
+                // Eksekusi perintah SQL
+                int rowsUpdated = pernyataanSQL.executeUpdate();
+
+                // Validasi data SQL
+                if (rowsUpdated > 0) {
+                    // Commit transaction
+                    penghubung.commit();
+
+                    // Success condition
+                    JOptionPane.showMessageDialog(null, "Pembaruan Password Berhasil.");
+                    new Login().setVisible(true); // Redirect to Login object
+                    this.dispose(); // Close current window
+                } else {
+                    // Failure condition
+                    JOptionPane.showMessageDialog(null, "Gagal Memperbarui Password.");
+                    clearForm();
+                }
+
+                // Close pernyataanSQL
+                pernyataanSQL.close();
+            } catch (SQLException e) {
+                // Rollback transaction saat terjadi error
+                penghubung.rollback();
+                JOptionPane.showMessageDialog(null, "Gagal Memperbarui Password \n" + e.getMessage());
+            } finally {
+                // Mengembalikan auto-commit ke mode on dan close connection
+                penghubung.setAutoCommit(true);
+                penghubung.close();
             }
-
-            // Tutup pernyataanSQL dan penghubung
-            pernyataanSQL.close();
-            penghubung.close();
 
         } catch (SQLException e) {
             // 07. Exception()
@@ -216,6 +247,11 @@ public class LupaPW extends javax.swing.JFrame {
         new Login().setVisible(true); //Meredirect ke object Register
         this.dispose();
     }//GEN-LAST:event_TombolLoginMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -267,5 +303,6 @@ public class LupaPW extends javax.swing.JFrame {
     private javax.swing.JLabel TombolLogin;
     private javax.swing.JToggleButton TombolRenew;
     private javax.swing.JTextField Username;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

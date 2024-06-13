@@ -37,9 +37,10 @@ public class MenuUtama extends javax.swing.JFrame {
     public MenuUtama(String username) {
         this.username = username;
         initComponents();
-        
+
         setTitle("Fantasy Fittings");
         
+
         Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
         setIconImage(icon);
         

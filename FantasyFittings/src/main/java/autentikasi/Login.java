@@ -28,6 +28,7 @@ public class Login extends javax.swing.JFrame {
         Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
         setIconImage(icon);
         setTitle("Fantasy Fittings - Login");
+
     }
     
     // Getter untuk userId
@@ -59,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         TombolLupaPW = new javax.swing.JLabel();
         TombolRegister = new javax.swing.JLabel();
         BackGround = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -109,6 +111,13 @@ public class Login extends javax.swing.JFrame {
         BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-name-2.png"))); // NOI18N
         BackGround.setOpaque(true);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,12 +147,17 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(22, 22, 22))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(Title)
-                                .addGap(81, 81, 81))))))
+                                .addGap(81, 81, 81))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
                 .addComponent(Title)
                 .addGap(48, 48, 48)
                 .addComponent(LabelUsername)
@@ -156,12 +170,12 @@ public class Login extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addComponent(TombolLupaPW)
                 .addGap(18, 18, 18)
-                .addComponent(TombolLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(TombolLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PesanRegister)
                     .addComponent(TombolRegister))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addComponent(BackGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -236,6 +250,11 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_TombolRegisterMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -282,5 +301,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel TombolLupaPW;
     private javax.swing.JLabel TombolRegister;
     private javax.swing.JTextField Username;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
