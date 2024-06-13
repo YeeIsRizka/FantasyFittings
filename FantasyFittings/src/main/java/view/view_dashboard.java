@@ -32,6 +32,7 @@ public class view_dashboard extends javax.swing.JPanel {
         CountStatRented();
         CountStatAvailable();
         CountRevenue();
+        CountRevenueMonth();
         readTopOutfit();
         readTopPelanggan();
     }
@@ -828,42 +829,39 @@ public class view_dashboard extends javax.swing.JPanel {
         
     };
     
-    public void CountRevenueMonth(){
-        try {
-            //2. Query untuk menampilkan data
-            //SELECT * FROM nama_tabel
-            String pendapatan = "SELECT TotalIncomeThisMonth()";
-            
-            //3. Koneksi MYSQL
-            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
-            
-            //4. Statement Query
-            Statement statement_sql = penghubung.createStatement();
-            
-            // 5. Eksekusi Query
-            ResultSet totalPemasukan = statement_sql.executeQuery(pendapatan);
+    public void CountRevenueMonth() {
+    try {
+        // Query SQL untuk mengambil total pendapatan bulan ini
+        String pendapatan = "SELECT TotalIncomeThisMonth() AS totalPendapatan";
 
-            // 6. Ekstraksi nilai dari ResultSet
-            
-            StringBuilder revenueResultStringBuilder = new StringBuilder();
-            while (totalPemasukan.next()) {
-                int revenue = totalPemasukan.getInt(1); // Mengambil nilai pertama dari setiap baris
-                revenueResultStringBuilder.append("Rp. ").append(revenue); // Menggunakan StringBuilder untuk membangun String
-            }
-            
-            
-            // 7. Konversi StringBuilder menjadi String
-            String revenueResult = revenueResultStringBuilder.toString();
+        // Koneksi ke database
+        Connection penghubung = (Connection) koneksiDB.konfigurasi_koneksiDB();
 
-            // 8. Pemberian Variabel pada label
-            TotalPendapatanBulan.setText(revenueResult);
+        // Statement Query
+        Statement statement_sql = penghubung.createStatement();
 
-        } catch (Exception e) {
-            //7. Tampilkan kesalahan / bug
-            e.printStackTrace();
+        // Eksekusi Query
+        ResultSet totalPemasukan = statement_sql.executeQuery(pendapatan);
+
+        // Ekstraksi nilai dari ResultSet
+        StringBuilder revenueResultStringBuilder = new StringBuilder();
+        while (totalPemasukan.next()) {
+            int revenue = totalPemasukan.getInt("totalPendapatan"); // Mengambil nilai berdasarkan nama kolom
+            revenueResultStringBuilder.append("Rp. ").append(revenue); // Membangun string hasil
         }
-        
-    };
+
+        // Konversi StringBuilder menjadi String
+        String revenueResult = revenueResultStringBuilder.toString();
+
+        // Menetapkan nilai pada label (pastikan label TotalPendapatanBulan sudah dideklarasikan)
+        TotalPendapatanBulan.setText(revenueResult);
+
+    } catch (Exception e) {
+        // Tangani kesalahan
+        e.printStackTrace();
+    }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Catchphrase;
