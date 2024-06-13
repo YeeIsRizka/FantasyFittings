@@ -12,12 +12,9 @@
             <version>RELEASE210</version>
         </dependency>
         <dependency>
-            <groupId>Koneksi-MySQL-4B</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.3.0</version>
-            <!-- <groupId>mysql-connector-java-8.4.0</groupId>
+            <groupId>mysql-connector-java-8.4.0</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.4.0</version> -->
+            <version>8.4.0</version>
         </dependency>
         <dependency>
             <groupId>jcalendar-1.4</groupId>
