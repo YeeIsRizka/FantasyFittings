@@ -5,12 +5,14 @@
 package autentikasi;
 
 import com.mycompany.FantasyFittings.koneksiDB;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import main.Dashboard;
+import main.MenuUtama;
 
 /**
  *
@@ -23,6 +25,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
+        setIconImage(icon);
     }
     
     // Getter untuk userId
@@ -57,7 +61,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 380));
         setResizable(false);
 
         TombolLogin.setBackground(new java.awt.Color(0, 153, 255));
@@ -162,6 +165,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void clearForm() {
         Username.setText("");
@@ -196,10 +200,11 @@ public class Login extends javax.swing.JFrame {
             if (hasilSQL.next()) {
                 // Kondisi Berhasil
                 userId = hasilSQL.getInt("id");  // Simpan id pengguna yang berhasil login
+                String username = hasilSQL.getString("username");
                 JOptionPane.showMessageDialog(null, "Login Berhasil, ID: " + userId);
 
                 // Pass userId to DashboardPengguna
-                Dashboard dashboardLogin = new Dashboard();
+                MenuUtama dashboardLogin = new MenuUtama(username);
                 dashboardLogin.setVisible(true); //Meredirect ke object dashboard
                 this.dispose(); // Menutup window login
             } else {
