@@ -38,6 +38,8 @@ public class MenuUtama extends javax.swing.JFrame {
         this.username = username;
         initComponents();
         
+        setTitle("Fantasy Fittings");
+        
         Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
         setIconImage(icon);
         
@@ -47,7 +49,13 @@ public class MenuUtama extends javax.swing.JFrame {
         home_username.setText(username);
 
     }
+    
+    // Method untuk mengupdate window title berdasarkan view yg aktif
+    public void updateTitle(String viewName) {
+        setTitle("Fantasy Fittings - " + viewName);
+    }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -662,6 +670,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pn_body.add(new view_dashboard());
         pn_body.repaint();
         pn_body.revalidate();
+        updateTitle("Dashboard");
     }//GEN-LAST:event_pn_btnDashboardMouseClicked
 
     private void pn_btnOutfitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnOutfitMouseClicked
@@ -669,6 +678,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pn_body.add(new view_outfit());
         pn_body.repaint();
         pn_body.revalidate();
+        updateTitle("Outfit");
     }//GEN-LAST:event_pn_btnOutfitMouseClicked
 
     private void pn_btnPenyewaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPenyewaanMouseClicked
@@ -676,6 +686,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pn_body.add(new view_penyewaan());
         pn_body.repaint();
         pn_body.revalidate();
+        updateTitle("Penyewaan");
     }//GEN-LAST:event_pn_btnPenyewaanMouseClicked
 
     private void pn_btnPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPelangganMouseClicked
@@ -683,6 +694,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pn_body.add(new view_pelanggan());
         pn_body.repaint();
         pn_body.revalidate();
+        updateTitle("Pelanggan");
     }//GEN-LAST:event_pn_btnPelangganMouseClicked
 
     private void pn_btnPembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_btnPembayaranMouseClicked
@@ -690,6 +702,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pn_body.add(new view_pembayaran());
         pn_body.repaint();
         pn_body.revalidate();
+        updateTitle("Pembayaran");
     }//GEN-LAST:event_pn_btnPembayaranMouseClicked
 
     private void pn_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_userMouseClicked

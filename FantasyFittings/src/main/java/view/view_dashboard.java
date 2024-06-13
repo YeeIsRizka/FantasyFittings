@@ -67,6 +67,7 @@ public class view_dashboard extends javax.swing.JPanel {
         Catchphrase2 = new javax.swing.JLabel();
         Catchphrase3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -335,15 +336,17 @@ public class view_dashboard extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
@@ -651,6 +654,7 @@ public void CountStatOutfitType(){
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pn_body;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,6 +27,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
         setIconImage(icon);
+        setTitle("Fantasy Fittings - Login");
     }
     
     // Getter untuk userId
