@@ -9,7 +9,6 @@ Fantasy Fittings is a comprehensive application designed to manage a cosplay ren
 - **Renting System**: Efficiently manage the renting process including checking availability, booking, and returns.
 - **Transaction Records**: Maintain detailed records of all transactions for auditing and reporting purposes.
 - **User Interface**: Intuitive and user-friendly interface for both admin and customers.
-- **Database Integration**: Robust database support for storing and retrieving data efficiently.
 
 ## Getting Started
 
