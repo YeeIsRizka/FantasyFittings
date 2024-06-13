@@ -8,11 +8,13 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import autentikasi.Login;
 import com.mycompany.FantasyFittings.koneksiDB;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 import view.view_dashboard;
 import view.view_outfit;
 import view.view_pelanggan;
@@ -35,6 +37,10 @@ public class MenuUtama extends javax.swing.JFrame {
     public MenuUtama(String username) {
         this.username = username;
         initComponents();
+        
+        Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
+        setIconImage(icon);
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         dash_username.setText(username);

@@ -5,11 +5,13 @@
 package autentikasi;
 
 import com.mycompany.FantasyFittings.koneksiDB;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +25,8 @@ public class Register extends javax.swing.JFrame {
      */
     public Register() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
+        setIconImage(icon);
     }
 
     /**

@@ -5,10 +5,12 @@
 package autentikasi;
 
 import com.mycompany.FantasyFittings.koneksiDB;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import main.MenuUtama;
 
@@ -23,6 +25,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/images/logo-2.1.png")).getImage();
+        setIconImage(icon);
     }
     
     // Getter untuk userId
