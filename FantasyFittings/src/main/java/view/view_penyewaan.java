@@ -730,19 +730,7 @@ public class view_penyewaan extends javax.swing.JPanel {
     }//GEN-LAST:event_JumlahActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-        IDpenyewaan.setText("");
-        IDpelanggan.setText("");
-        IDoutfit.setText("");
-        NamaPelanggan.setText("");
-        NamaOutfit.setText("");
-        ukuran.setText("");
-        stok.setText("");
-        HargaSewa.setText("N/A");
-        TanggalPenyewaan.setDate(null);
-        TanggalPengembalian.setDate(null);
-        Jumlah.setText("");
-        HargaTotal.setText("N/A");
-        Status.setSelectedIndex(-1);
+        layar_bersih();
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void baca_data_outfitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baca_data_outfitMouseClicked
@@ -777,6 +765,8 @@ public class view_penyewaan extends javax.swing.JPanel {
     }//GEN-LAST:event_baca_data_pelangganMouseClicked
 
     private void baca_data_penyewaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baca_data_penyewaanMouseClicked
+        layar_bersih();
+        
         int baris = baca_data_penyewaan.rowAtPoint(evt.getPoint());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -785,9 +775,11 @@ public class view_penyewaan extends javax.swing.JPanel {
 
         String ID_pelanggan = baca_data_penyewaan.getValueAt(baris, 1).toString();
         IDpelanggan.setText(ID_pelanggan);
+        fetchPelangganDetails(ID_pelanggan);
 
         String ID_outfit = baca_data_penyewaan.getValueAt(baris, 2).toString();
         IDoutfit.setText(ID_outfit);
+        fetchOutfitDetails(ID_outfit);
 
         try {
             String Tanggal_penyewaan = baca_data_penyewaan.getValueAt(baris, 3).toString();
@@ -810,11 +802,68 @@ public class view_penyewaan extends javax.swing.JPanel {
         String status = baca_data_penyewaan.getValueAt(baris, 7).toString();
         Status.setSelectedItem(status);
     }//GEN-LAST:event_baca_data_penyewaanMouseClicked
-private void layar_bersih(){
+    
+    private void fetchOutfitDetails(String outfitID) {
+        try {
+            String query = "SELECT nama, ukuran, jumlah, hargaRentalPerHari FROM outfit WHERE id = ?";
+            Connection penghubung = (Connection) koneksiDB.konfigurasi_koneksiDB();
+            PreparedStatement fetchOutfitDetailsStatement = penghubung.prepareStatement(query);
+            fetchOutfitDetailsStatement.setString(1, outfitID);
+            ResultSet fetchOutfitDetailsResult = fetchOutfitDetailsStatement.executeQuery();
+
+            if (fetchOutfitDetailsResult.next()) {
+                NamaOutfit.setText(fetchOutfitDetailsResult.getString("nama"));
+                ukuran.setText(fetchOutfitDetailsResult.getString("ukuran"));
+                stok.setText(fetchOutfitDetailsResult.getString("jumlah"));
+                HargaSewa.setText(fetchOutfitDetailsResult.getString("hargaRentalPerHari"));
+            }
+
+            fetchOutfitDetailsResult.close();
+            fetchOutfitDetailsStatement.close();
+            penghubung.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void fetchPelangganDetails(String pelangganID) {
+        try {
+            String query = "SELECT nama FROM pelanggan WHERE id = ?";
+            Connection penghubung = (Connection) koneksiDB.konfigurasi_koneksiDB();
+
+            PreparedStatement fetchPelangganDetailsStatement = penghubung.prepareStatement(query);
+            fetchPelangganDetailsStatement.setString(1, pelangganID);
+
+            ResultSet fetchPelangganDetailsResult = fetchPelangganDetailsStatement.executeQuery();
+
+            if (fetchPelangganDetailsResult.next()) {
+                NamaPelanggan.setText(fetchPelangganDetailsResult.getString("nama"));
+            } else {
+                NamaPelanggan.setText("");
+            }
+
+            fetchPelangganDetailsResult.close();
+            fetchPelangganDetailsStatement.close();
+            penghubung.close(); 
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
+    
+    private void layar_bersih(){
         IDpenyewaan.setText("");
-        Status.setSelectedIndex(-1); // Set to -1 for no selection
+        IDpelanggan.setText("");
+        IDoutfit.setText("");
         NamaPelanggan.setText("");
+        NamaOutfit.setText("");
         ukuran.setText("");
+        stok.setText("");
+        HargaSewa.setText("N/A");
+        TanggalPenyewaan.setDate(null);
+        TanggalPengembalian.setDate(null);
+        Jumlah.setText("");
+        HargaTotal.setText("N/A");
+        Status.setSelectedIndex(-1);
         updateTotalPrice();
     }
     
@@ -986,10 +1035,6 @@ private void layar_bersih(){
         }
     }
     
-    private void clearInputs() {
-        
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ClearButton;
     private javax.swing.JButton EditButton;
