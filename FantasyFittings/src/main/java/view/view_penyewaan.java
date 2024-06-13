@@ -189,7 +189,7 @@ public class view_penyewaan extends javax.swing.JPanel {
             }
         });
 
-        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dipinjam", "Selesai" }));
+        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disewakan", "Selesai" }));
 
         IDoutfit.setEnabled(false);
         IDoutfit.addActionListener(new java.awt.event.ActionListener() {
