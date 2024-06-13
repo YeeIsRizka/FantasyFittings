@@ -177,50 +177,65 @@ public class LupaPW extends javax.swing.JFrame {
     
     private void TombolRenewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolRenewActionPerformed
         try {
-            // 01. Tangkap variabel inputan 
+            // Tangkap variabel inputan 
             String uname = Username.getText();
             String pw = new String(PasswordB.getPassword());
             String kpw = new String(KPasswordB.getPassword());
 
-            // 01.1. Konfirmasi Inputan
+            // Konfirmasi Inputan
             if (!pw.equals(kpw)) {
                 JOptionPane.showMessageDialog(null, "Pastikan konfirmasi password sesuai");
                 return;
             }
 
-            // 02. Query SQL - INSERT
+            // Query SQL - INSERT
             String perintahUpdate_SQL = "UPDATE pengguna SET password = ? WHERE username = ?";
 
-            // 03. Menghubungkan SQL - Java
+            // Menghubungkan SQL - Java
             Connection penghubung = koneksiDB.konfigurasi_koneksiDB();
             if (penghubung == null) {
                 JOptionPane.showMessageDialog(null, "Koneksi ke database gagal. Silakan cek konfigurasi database Anda.");
                 return;
             }
 
-            // 04. Membuat PreparedStatement
-            PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahUpdate_SQL);
-            pernyataanSQL.setString(1, pw);
-            pernyataanSQL.setString(2, uname);
+            // Menggunakan transaction untuk validasi data
+            penghubung.setAutoCommit(false); // Start transaction
 
-            // 05. Mengeksekusi perintah SQL
-            int rowsUpdated = pernyataanSQL.executeUpdate();
+            try {
+                // Buat PreparedStatement
+                PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahUpdate_SQL);
+                pernyataanSQL.setString(1, pw);
+                pernyataanSQL.setString(2, uname);
 
-            // 06. Validasi data SQL
-            if (rowsUpdated > 0) {
-                // Kondisi Berhasil
-                JOptionPane.showMessageDialog(null, "Pembaruan Password Berhasil.");
-                new Login().setVisible(true); //Meredirect ke object Login
-                this.dispose(); // Menutup window login
-            } else {
-                // Kondisi Gagal 
-                JOptionPane.showMessageDialog(null, "Gagal Memperbarui Password.");
-                clearForm();
+                // Eksekusi perintah SQL
+                int rowsUpdated = pernyataanSQL.executeUpdate();
+
+                // Validasi data SQL
+                if (rowsUpdated > 0) {
+                    // Commit transaction
+                    penghubung.commit();
+
+                    // Success condition
+                    JOptionPane.showMessageDialog(null, "Pembaruan Password Berhasil.");
+                    new Login().setVisible(true); // Redirect to Login object
+                    this.dispose(); // Close current window
+                } else {
+                    // Failure condition
+                    JOptionPane.showMessageDialog(null, "Gagal Memperbarui Password.");
+                    clearForm();
+                }
+
+                // Close pernyataanSQL
+                pernyataanSQL.close();
+            } catch (SQLException e) {
+                // Rollback transaction saat terjadi error
+                penghubung.rollback();
+                JOptionPane.showMessageDialog(null, "Gagal Memperbarui Password \n" + e.getMessage());
+            } finally {
+                // Mengembalikan auto-commit ke mode on dan close connection
+                penghubung.setAutoCommit(true);
+                penghubung.close();
             }
-
-            // Tutup pernyataanSQL dan penghubung
-            pernyataanSQL.close();
-            penghubung.close();
 
         } catch (SQLException e) {
             // 07. Exception()

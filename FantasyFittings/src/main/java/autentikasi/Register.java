@@ -175,50 +175,71 @@ public class Register extends javax.swing.JFrame {
     
     private void TombolRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolRegisterActionPerformed
         try {
-            // 01. Tangkap variabel inputan 
+            // Tangkap variabel inputan 
             String uname = Username.getText();
             String pw = new String(Password.getPassword());
             String kpw = new String(KPassword.getPassword());
 
-            // 01.1. Konfirmasi Inputan
+            // Konfirmasi Inputan
             if (!pw.equals(kpw)) {
                 JOptionPane.showMessageDialog(null, "Pastikan konfirmasi password sesuai");
                 return;
             }
-
-            // 02. Query SQL - INSERT
+            
+            // Memastikan Panjang password >8
+            if (pw.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Password harus terdiri dari minimal 8 karakter");
+            return;
+            }
+            
+            // Query SQL - INSERT
             String perintahInsert_SQL = "INSERT INTO pengguna (username, password) VALUES (?, ?)";
 
-            // 03. Menghubungkan SQL - Java
+            // Menghubungkan SQL - Java
             Connection penghubung = koneksiDB.konfigurasi_koneksiDB();
             if (penghubung == null) {
                 JOptionPane.showMessageDialog(null, "Koneksi ke database gagal. Silakan cek konfigurasi database Anda.");
                 return;
             }
 
-            // 04. Membuat PreparedStatement
-            PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahInsert_SQL);
-            pernyataanSQL.setString(1, uname);
-            pernyataanSQL.setString(2, pw);
+            // Menggunakan transaction untuk validasi data
+            penghubung.setAutoCommit(false); // Start transaction
 
-            // 05. Mengeksekusi perintah SQL
-            int rowsInserted = pernyataanSQL.executeUpdate();
+            try {
+                // Buat PreparedStatement
+                PreparedStatement pernyataanSQL = penghubung.prepareStatement(perintahInsert_SQL);
+                pernyataanSQL.setString(1, uname);
+                pernyataanSQL.setString(2, pw);
 
-            // 06. Validasi data SQL
-            if (rowsInserted > 0) {
-                // Kondisi Berhasil
-                JOptionPane.showMessageDialog(null, "Register Berhasil");
-                new Login().setVisible(true); //Meredirect ke object Login
-                this.dispose(); // Menutup window login
-            } else {
-                // Kondisi Gagal 
-                JOptionPane.showMessageDialog(null, "Gagal melakukan registrasi");
-                clearForm();
+                // Eksekusi command SQL
+                int rowsInserted = pernyataanSQL.executeUpdate();
+
+                // Validasi data SQL
+                if (rowsInserted > 0) {
+                    // Commit transaction
+                    penghubung.commit();
+
+                    // Success condition
+                    JOptionPane.showMessageDialog(null, "Register Berhasil");
+                    new Login().setVisible(true); // Redirect to Login object
+                    this.dispose(); // Close login window
+                } else {
+                    // Failure condition
+                    JOptionPane.showMessageDialog(null, "Gagal melakukan registrasi");
+                    clearForm();
+                }
+
+                // Close pernyataanSQL
+                pernyataanSQL.close();
+            } catch (SQLException e) {
+                // Rollback transaction saat terjadi error
+                penghubung.rollback();
+                JOptionPane.showMessageDialog(null, "Registrasi Gagal \n" + e.getMessage());
+            } finally {
+                // Mengembalikan auto-commit ke mode on dan close connection
+                penghubung.setAutoCommit(true);
+                penghubung.close();
             }
-
-            // Tutup pernyataanSQL dan penghubung
-            pernyataanSQL.close();
-            penghubung.close();
 
         } catch (SQLException e) {
             // 07. Exception()
