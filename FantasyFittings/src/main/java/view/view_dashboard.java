@@ -67,8 +67,9 @@ public class view_dashboard extends javax.swing.JPanel {
         Catchphrase2 = new javax.swing.JLabel();
         Catchphrase3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
+        LabelPendapatan1 = new javax.swing.JLabel();
+        TotalPendapatanBulan = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -85,7 +86,7 @@ public class view_dashboard extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1047, 1047, 1047))
         );
         jPanel4Layout.setVerticalGroup(
@@ -230,7 +231,7 @@ public class view_dashboard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(StatKostumDipinjamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(KostumDipinjam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelStatKostum2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addComponent(LabelStatKostum2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         StatKostumDipinjamLayout.setVerticalGroup(
@@ -250,22 +251,23 @@ public class view_dashboard extends javax.swing.JPanel {
         LabelPendapatan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         LabelPendapatan.setForeground(new java.awt.Color(255, 255, 255));
         LabelPendapatan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelPendapatan.setText("This Month Revenue");
+        LabelPendapatan.setText("Total Revenue");
 
         TotalPendapatan.setBackground(new java.awt.Color(0, 0, 0));
-        TotalPendapatan.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        TotalPendapatan.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         TotalPendapatan.setForeground(new java.awt.Color(255, 255, 255));
         TotalPendapatan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TotalPendapatan.setText("JUMLAH");
 
         javax.swing.GroupLayout StatTotalPendapatanLayout = new javax.swing.GroupLayout(StatTotalPendapatan);
         StatTotalPendapatan.setLayout(StatTotalPendapatanLayout);
         StatTotalPendapatanLayout.setHorizontalGroup(
             StatTotalPendapatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StatTotalPendapatanLayout.createSequentialGroup()
+            .addGroup(StatTotalPendapatanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(StatTotalPendapatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TotalPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+                .addGroup(StatTotalPendapatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelPendapatan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                    .addComponent(TotalPendapatan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         StatTotalPendapatanLayout.setVerticalGroup(
@@ -274,7 +276,7 @@ public class view_dashboard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(LabelPendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TotalPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addComponent(TotalPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -310,7 +312,7 @@ public class view_dashboard extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Ikon, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(Ikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Catchphrase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
@@ -336,30 +338,50 @@ public class view_dashboard extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
+
+        LabelPendapatan1.setBackground(new java.awt.Color(0, 0, 0));
+        LabelPendapatan1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LabelPendapatan1.setForeground(new java.awt.Color(255, 255, 255));
+        LabelPendapatan1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelPendapatan1.setText("Total Revenue This Month");
+
+        TotalPendapatanBulan.setBackground(new java.awt.Color(0, 0, 0));
+        TotalPendapatanBulan.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        TotalPendapatanBulan.setForeground(new java.awt.Color(255, 255, 255));
+        TotalPendapatanBulan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TotalPendapatanBulan.setText("JUMLAH");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelPendapatan1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                    .addComponent(TotalPendapatanBulan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LabelPendapatan1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TotalPendapatanBulan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -369,22 +391,22 @@ public class view_dashboard extends javax.swing.JPanel {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(StatKostum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(StatJumlahKostum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(StatKostumTersedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(StatKostumDipinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(StatTotalPendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(StatKostumDipinjam, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(StatTotalPendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -404,7 +426,7 @@ public class view_dashboard extends javax.swing.JPanel {
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(StatTotalPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(StatTotalPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -423,8 +445,7 @@ public class view_dashboard extends javax.swing.JPanel {
             pn_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_bodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -594,7 +615,7 @@ public void CountStatOutfitType(){
         try {
             //2. Query untuk menampilkan data
             //SELECT * FROM nama_tabel
-            String pendapatan = "SELECT SUM(jumlahBayar) FROM pembayaran";
+            String pendapatan = "SELECT TotalIncome()";
             
             //3. Koneksi MYSQL
             Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
@@ -626,6 +647,43 @@ public void CountStatOutfitType(){
         }
         
     };
+    
+    public void CountRevenueMonth(){
+        try {
+            //2. Query untuk menampilkan data
+            //SELECT * FROM nama_tabel
+            String pendapatan = "SELECT TotalIncomeThisMonth()";
+            
+            //3. Koneksi MYSQL
+            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
+            
+            //4. Statement Query
+            Statement statement_sql = penghubung.createStatement();
+            
+            // 5. Eksekusi Query
+            ResultSet totalPemasukan = statement_sql.executeQuery(pendapatan);
+
+            // 6. Ekstraksi nilai dari ResultSet
+            
+            StringBuilder revenueResultStringBuilder = new StringBuilder();
+            while (totalPemasukan.next()) {
+                int revenue = totalPemasukan.getInt(1); // Mengambil nilai pertama dari setiap baris
+                revenueResultStringBuilder.append("Rp. ").append(revenue); // Menggunakan StringBuilder untuk membangun String
+            }
+            
+            
+            // 7. Konversi StringBuilder menjadi String
+            String revenueResult = revenueResultStringBuilder.toString();
+
+            // 8. Pemberian Variabel pada label
+            TotalPendapatanBulan.setText(revenueResult);
+
+        } catch (Exception e) {
+            //7. Tampilkan kesalahan / bug
+            e.printStackTrace();
+        }
+        
+    };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Catchphrase;
@@ -636,6 +694,7 @@ public void CountStatOutfitType(){
     private javax.swing.JLabel LabelKostumQTY;
     private javax.swing.JLabel LabelKostumTersedia;
     private javax.swing.JLabel LabelPendapatan;
+    private javax.swing.JLabel LabelPendapatan1;
     private javax.swing.JLabel LabelStatKostum2;
     private javax.swing.JLabel LabelStatKostumType;
     private javax.swing.JLabel StatAvailable;
@@ -647,6 +706,7 @@ public void CountStatOutfitType(){
     private javax.swing.JPanel StatKostumTersedia;
     private javax.swing.JPanel StatTotalPendapatan;
     private javax.swing.JLabel TotalPendapatan;
+    private javax.swing.JLabel TotalPendapatanBulan;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel10;
@@ -654,7 +714,6 @@ public void CountStatOutfitType(){
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pn_body;
     // End of variables declaration//GEN-END:variables
 }
