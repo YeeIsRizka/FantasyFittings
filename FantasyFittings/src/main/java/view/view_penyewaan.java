@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author Rizka Alfadillla
@@ -35,6 +36,9 @@ public class view_penyewaan extends javax.swing.JPanel {
         baca_data_pelanggan();
         baca_data_outfit();
         baca_data_penyewaan();
+        baca_data_pelanggan.getColumnModel().getColumn(0).setPreferredWidth(3);
+        baca_data_outfit.getColumnModel().getColumn(0).setPreferredWidth(3);
+        baca_data_penyewaan.getColumnModel().getColumn(0).setPreferredWidth(3);
         IDoutfit.getDocument().addDocumentListener(new HargaChangeListener());
         Jumlah.getDocument().addDocumentListener(new HargaChangeListener());
         TanggalPenyewaan.addPropertyChangeListener("date", new DateChangeListener());
@@ -61,7 +65,6 @@ public class view_penyewaan extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         harga_title = new javax.swing.JLabel();
@@ -118,7 +121,7 @@ public class view_penyewaan extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                 .addGap(741, 741, 741))
         );
         jPanel4Layout.setVerticalGroup(
@@ -133,22 +136,6 @@ public class view_penyewaan extends javax.swing.JPanel {
                         .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                         .addGap(24, 24, 24))))
         );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -270,63 +257,63 @@ public class view_penyewaan extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(harga_title1)
-                        .addComponent(ukuran_title)
-                        .addComponent(jumlah_title)
-                        .addComponent(NamaPelanggan)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(TambahButton)
-                            .addGap(18, 18, 18)
-                            .addComponent(HapusButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(EditButton)
-                            .addGap(18, 18, 18)
-                            .addComponent(ClearButton))
-                        .addComponent(Status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nama_title)
-                        .addComponent(IDpenyewaan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nama_title2)
-                                .addComponent(IDpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(22, 22, 22)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nama_title1)
-                                .addComponent(IDoutfit, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(TanggalPenyewaan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(NamaOutfit, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jumlah_title1)
-                                .addComponent(harga_title3)
-                                .addComponent(stok, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nama_title3)
-                                    .addComponent(Jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(harga_title2)
-                                    .addComponent(TanggalPengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(harga_title2)
+                    .addComponent(TanggalPenyewaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nama_title3)
+                            .addComponent(jumlah_title1)
+                            .addComponent(jumlah_title)
+                            .addComponent(NamaPelanggan)
+                            .addComponent(nama_title)
+                            .addComponent(IDpenyewaan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nama_title2)
+                                    .addComponent(IDpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nama_title1)
+                                    .addComponent(IDoutfit, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(harga_title1)
+                                    .addComponent(harga_title3)
+                                    .addComponent(stok, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(harga_title, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ukuran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(HargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(HargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                                    .addComponent(ukuran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(NamaOutfit)
+                            .addComponent(Jumlah))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ukuran_title)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(TambahButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(HapusButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addComponent(EditButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(ClearButton))
+                            .addComponent(Status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(HargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(HargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(TanggalPengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addComponent(nama_title)
                 .addGap(4, 4, 4)
                 .addComponent(IDpenyewaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,37 +330,34 @@ public class view_penyewaan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jumlah_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(NamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jumlah_title1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NamaOutfit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(NamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jumlah_title1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NamaOutfit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(harga_title)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(harga_title3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)))
+                .addComponent(nama_title3)
+                .addGap(4, 4, 4)
+                .addComponent(Jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(harga_title1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(harga_title2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TanggalPengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(nama_title3)
-                                .addGap(4, 4, 4)
-                                .addComponent(Jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(harga_title3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(stok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addComponent(harga_title1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TanggalPenyewaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(TanggalPenyewaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(harga_title2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TanggalPengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ukuran_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,7 +376,7 @@ public class view_penyewaan extends javax.swing.JPanel {
                     .addComponent(HapusButton)
                     .addComponent(EditButton)
                     .addComponent(ClearButton))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         baca_data_outfit.setModel(new javax.swing.table.DefaultTableModel(
@@ -420,13 +404,27 @@ public class view_penyewaan extends javax.swing.JPanel {
             new String [] {
                 "ID Pelanggan", "Nama Pelanggan"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        baca_data_pelanggan.setMinimumSize(new java.awt.Dimension(5, 80));
         baca_data_pelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 baca_data_pelangganMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(baca_data_pelanggan);
+        if (baca_data_pelanggan.getColumnModel().getColumnCount() > 0) {
+            baca_data_pelanggan.getColumnModel().getColumn(0).setResizable(false);
+            baca_data_pelanggan.getColumnModel().getColumn(0).setPreferredWidth(10);
+            baca_data_pelanggan.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         baca_data_penyewaan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -457,42 +455,56 @@ public class view_penyewaan extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(506, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        jScrollPane4.setViewportView(jPanel3);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pn_bodyLayout = new javax.swing.GroupLayout(pn_body);
         pn_body.setLayout(pn_bodyLayout);
         pn_bodyLayout.setHorizontalGroup(
             pn_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_bodyLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_bodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pn_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pn_bodyLayout.setVerticalGroup(
@@ -500,9 +512,7 @@ public class view_penyewaan extends javax.swing.JPanel {
             .addGroup(pn_bodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -516,180 +526,7 @@ public class view_penyewaan extends javax.swing.JPanel {
             .addComponent(pn_body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-private void layar_bersih(){
-        IDpenyewaan.setText("");
-        Status.setSelectedIndex(-1); // Set to -1 for no selection
-        NamaPelanggan.setText("");
-        ukuran.setText("");
-        updateTotalPrice();
-    }
-    
-    
-    private void baca_data_pelanggan(){
-        DefaultTableModel dataPelanggan = new DefaultTableModel();
-        dataPelanggan.addColumn("ID Pelanggan");
-        dataPelanggan.addColumn("Nama Pelanggan");
-        
-        try {
-            //2. Query untuk menampilkan data
-            //SELECT * FROM nama_tabel
-            String query_data = "SELECT * FROM pelanggan";
-            
-            //3. Koneksi MYSQL
-            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
-            
-            //4. Statement Query
-            Statement statement_sql = penghubung.createStatement();
-            
-            //5. Eksekusi Query
-            ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
-            
-            int i = 1;
-            while (hasil_SQL.next()){
-                dataPelanggan.addRow(new Object[]{
-                //isi datanya
-                    hasil_SQL.getString("id"),
-                    hasil_SQL.getString("nama")
-                });
-                baca_data_pelanggan.setModel(dataPelanggan);
-            }
-        } catch (Exception e) {
-            //7. Tampilkan kesalahan / bug
-        }
-    }
-    
-    private void baca_data_outfit(){
-        DefaultTableModel dataOutfit = new DefaultTableModel();
-        dataOutfit.addColumn("ID Outfit");
-        dataOutfit.addColumn("Nama Outfit");
-        dataOutfit.addColumn("Ukuran");
-        dataOutfit.addColumn("Stok Outfit");
-        dataOutfit.addColumn("Harga Outfit");
-        
-        
-        try {
-            //2. Query untuk menampilkan data
-            //SELECT * FROM nama_tabel
-            String query_data = "SELECT * FROM outfit";
-            
-            //3. Koneksi MYSQL
-            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
-            
-            //4. Statement Query
-            Statement statement_sql = penghubung.createStatement();
-            
-            //5. Eksekusi Query
-            ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
-            
-            int i = 1;
-            while (hasil_SQL.next()){
-                dataOutfit.addRow(new Object[]{
-                //isi datanya
-                    hasil_SQL.getString("id"),
-                    hasil_SQL.getString("nama"),
-                    hasil_SQL.getString("ukuran"),
-                    hasil_SQL.getString("jumlah"),
-                    hasil_SQL.getString("hargaRentalPerHari")
-                });
-                baca_data_outfit.setModel(dataOutfit);
-            }
-        } catch (Exception e) {
-            //7. Tampilkan kesalahan / bug
-        }
-    }
-    
-    private void baca_data_penyewaan(){
-        DefaultTableModel dataPenyewaan = new DefaultTableModel();
-        dataPenyewaan.addColumn("ID Penyewaan");
-        dataPenyewaan.addColumn("ID Pelanggan");
-        dataPenyewaan.addColumn("ID Outfit");
-        dataPenyewaan.addColumn("Tanggal Penyewaan");
-        dataPenyewaan.addColumn("Tanggal Pengembalian");
-        dataPenyewaan.addColumn("Jumlah");
-        dataPenyewaan.addColumn("Harga Total");
-        dataPenyewaan.addColumn("Status");
-        
-        try {
-            //2. Query untuk menampilkan data
-            //SELECT * FROM nama_tabel
-            String query_data = "SELECT * FROM penyewaan";
-            
-            //3. Koneksi MYSQL
-            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
-            
-            //4. Statement Query
-            Statement statement_sql = penghubung.createStatement();
-            
-            //5. Eksekusi Query
-            ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
-            
-            while (hasil_SQL.next()){
-                dataPenyewaan.addRow(new Object[]{
-                //isi datanya
-                    hasil_SQL.getString("idPenyewaan"),
-                    hasil_SQL.getString("idPelanggan"),
-                    hasil_SQL.getString("idPakaianCosplay"),
-                    hasil_SQL.getString("tanggalPenyewaan"),
-                    hasil_SQL.getString("tanggalPengembalian"),
-                    hasil_SQL.getString("jumlah"),
-                    hasil_SQL.getString("hargaTotal"),
-                    hasil_SQL.getString("status"),
-                });
-                baca_data_penyewaan.setModel(dataPenyewaan);
-            }
-        } catch (Exception e) {
-            //7. Tampilkan kesalahan / bug
-        }
-    }
-    
-    private void updateTotalPrice() {
-        try {
-            double hargaSewa = Double.parseDouble(HargaSewa.getText());
-            Date tanggalPenyewaan = TanggalPenyewaan.getDate();
-            Date tanggalPengembalian = TanggalPengembalian.getDate();
-            int jumlah = Integer.parseInt(Jumlah.getText());
 
-            if (tanggalPenyewaan != null && tanggalPengembalian != null) {
-                long diff = tanggalPengembalian.getTime() - tanggalPenyewaan.getTime();
-                long daysRented = diff / (1000 * 60 * 60 * 24);
-                double totalHarga = hargaSewa * daysRented * jumlah;
-                String totalHargaStr = String.valueOf(totalHarga);
-                HargaTotal.setText(totalHargaStr);
-            } else {
-                HargaTotal.setText("N/A");
-            }
-        } catch (NumberFormatException e) {
-            HargaTotal.setText("N/A");
-        }
-    }
-
-    private class HargaChangeListener implements DocumentListener {
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            updateTotalPrice();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-            updateTotalPrice();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-            updateTotalPrice();
-        }
-    }
-
-    private class DateChangeListener implements PropertyChangeListener {
-        @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            updateTotalPrice();
-        }
-    }
-    
-    private void clearInputs() {
-        
-    }
     private void IDpenyewaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDpenyewaanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IDpenyewaanActionPerformed
@@ -937,7 +774,6 @@ private void layar_bersih(){
 
         String Nama_Pelanggan = baca_data_pelanggan.getValueAt(baris, 1).toString();
         NamaPelanggan.setText(Nama_Pelanggan);
-
     }//GEN-LAST:event_baca_data_pelangganMouseClicked
 
     private void baca_data_penyewaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baca_data_penyewaanMouseClicked
@@ -974,7 +810,185 @@ private void layar_bersih(){
         String status = baca_data_penyewaan.getValueAt(baris, 7).toString();
         Status.setSelectedItem(status);
     }//GEN-LAST:event_baca_data_penyewaanMouseClicked
+private void layar_bersih(){
+        IDpenyewaan.setText("");
+        Status.setSelectedIndex(-1); // Set to -1 for no selection
+        NamaPelanggan.setText("");
+        ukuran.setText("");
+        updateTotalPrice();
+    }
+    
+    
+    private void baca_data_pelanggan(){
+        DefaultTableModel dataPelanggan = new DefaultTableModel();
+        dataPelanggan.addColumn("ID Pelanggan");
+        dataPelanggan.addColumn("Nama Pelanggan");
+        
+//        TableColumnModel dataPelangganColumnModel = baca_data_pelanggan.getColumnModel();
+//        
+//        dataPelangganColumnModel.getColumn(0).setPreferredWidth(50); // Column 1 width
+//        dataPelangganColumnModel.getColumn(1).setPreferredWidth(200); // Column 2 width
+        
+        try {
+            //2. Query untuk menampilkan data
+            //SELECT * FROM nama_tabel
+            String query_data = "SELECT * FROM pelanggan";
+            
+            //3. Koneksi MYSQL
+            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
+            
+            //4. Statement Query
+            Statement statement_sql = penghubung.createStatement();
+            
+            //5. Eksekusi Query
+            ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
+            
+            int i = 1;
+            while (hasil_SQL.next()){
+                dataPelanggan.addRow(new Object[]{
+                //isi datanya
+                    hasil_SQL.getString("id"),
+                    hasil_SQL.getString("nama")
+                });
+                baca_data_pelanggan.setModel(dataPelanggan);
+            }
+        } catch (Exception e) {
+            //7. Tampilkan kesalahan / bug
+        }
+    }
+    
+    private void baca_data_outfit(){
+        DefaultTableModel dataOutfit = new DefaultTableModel();
+        dataOutfit.addColumn("ID Outfit");
+        dataOutfit.addColumn("Nama Outfit");
+        dataOutfit.addColumn("Ukuran");
+        dataOutfit.addColumn("Stok Outfit");
+        dataOutfit.addColumn("Harga Outfit");
+        
+        
+        try {
+            //2. Query untuk menampilkan data
+            //SELECT * FROM nama_tabel
+            String query_data = "SELECT * FROM outfit";
+            
+            //3. Koneksi MYSQL
+            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
+            
+            //4. Statement Query
+            Statement statement_sql = penghubung.createStatement();
+            
+            //5. Eksekusi Query
+            ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
+            
+            int i = 1;
+            while (hasil_SQL.next()){
+                dataOutfit.addRow(new Object[]{
+                //isi datanya
+                    hasil_SQL.getString("id"),
+                    hasil_SQL.getString("nama"),
+                    hasil_SQL.getString("ukuran"),
+                    hasil_SQL.getString("jumlah"),
+                    hasil_SQL.getString("hargaRentalPerHari")
+                });
+                baca_data_outfit.setModel(dataOutfit);
+            }
+        } catch (Exception e) {
+            //7. Tampilkan kesalahan / bug
+        }
+    }
+    
+    private void baca_data_penyewaan(){
+        DefaultTableModel dataPenyewaan = new DefaultTableModel();
+        dataPenyewaan.addColumn("ID Penyewaan");
+        dataPenyewaan.addColumn("ID Pelanggan");
+        dataPenyewaan.addColumn("ID Outfit");
+        dataPenyewaan.addColumn("Tanggal Penyewaan");
+        dataPenyewaan.addColumn("Tanggal Pengembalian");
+        dataPenyewaan.addColumn("Jumlah");
+        dataPenyewaan.addColumn("Harga Total");
+        dataPenyewaan.addColumn("Status");
+        
+        try {
+            //2. Query untuk menampilkan data
+            //SELECT * FROM nama_tabel
+            String query_data = "SELECT * FROM penyewaan";
+            
+            //3. Koneksi MYSQL
+            Connection penghubung = (Connection)koneksiDB.konfigurasi_koneksiDB();
+            
+            //4. Statement Query
+            Statement statement_sql = penghubung.createStatement();
+            
+            //5. Eksekusi Query
+            ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
+            
+            while (hasil_SQL.next()){
+                dataPenyewaan.addRow(new Object[]{
+                //isi datanya
+                    hasil_SQL.getString("idPenyewaan"),
+                    hasil_SQL.getString("idPelanggan"),
+                    hasil_SQL.getString("idPakaianCosplay"),
+                    hasil_SQL.getString("tanggalPenyewaan"),
+                    hasil_SQL.getString("tanggalPengembalian"),
+                    hasil_SQL.getString("jumlah"),
+                    hasil_SQL.getString("hargaTotal"),
+                    hasil_SQL.getString("status"),
+                });
+                baca_data_penyewaan.setModel(dataPenyewaan);
+            }
+        } catch (Exception e) {
+            //7. Tampilkan kesalahan / bug
+        }
+    }
+    
+    private void updateTotalPrice() {
+        try {
+            double hargaSewa = Double.parseDouble(HargaSewa.getText());
+            Date tanggalPenyewaan = TanggalPenyewaan.getDate();
+            Date tanggalPengembalian = TanggalPengembalian.getDate();
+            int jumlah = Integer.parseInt(Jumlah.getText());
 
+            if (tanggalPenyewaan != null && tanggalPengembalian != null) {
+                long diff = tanggalPengembalian.getTime() - tanggalPenyewaan.getTime();
+                long daysRented = diff / (1000 * 60 * 60 * 24);
+                double totalHarga = hargaSewa * daysRented * jumlah;
+                String totalHargaStr = String.valueOf(totalHarga);
+                HargaTotal.setText(totalHargaStr);
+            } else {
+                HargaTotal.setText("N/A");
+            }
+        } catch (NumberFormatException e) {
+            HargaTotal.setText("N/A");
+        }
+    }
+
+    private class HargaChangeListener implements DocumentListener {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            updateTotalPrice();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            updateTotalPrice();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            updateTotalPrice();
+        }
+    }
+
+    private class DateChangeListener implements PropertyChangeListener {
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+            updateTotalPrice();
+        }
+    }
+    
+    private void clearInputs() {
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ClearButton;
@@ -1010,7 +1024,6 @@ private void layar_bersih(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel jumlah_title;
     private javax.swing.JLabel jumlah_title1;
     private javax.swing.JLabel nama_title;
