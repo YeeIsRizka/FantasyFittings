@@ -2,13 +2,47 @@
 
 Fantasy Fittings is a comprehensive application designed to manage a cosplay renting shop. It helps streamline the process of renting, managing inventory, registering users, and maintaining transaction records.
 
+## Changelog - June 14, 2024
+
+### Added
+
+- **Export Reports to Excel**: by Akwan Cakra Tajimalela And Raka Indra Rahmawan
+
+  - Added functionality to export payment and user reports to Excel.
+  - Implemented a new button for exporting reports.
+
+- **Disable Buttons During Edit or Input**: by Ramandha Putra Suryahadi
+
+  - Implemented functionality to disable buttons while editing or inputting data to prevent multiple submissions.
+
+- **Date Validation Trigger**: by Rizka Alfadilla
+  - Added validation to ensure that the rental date cannot be later than the return date.
+  - Added validation to ensure that the rental date cannot be later than the payment date.
+  - Implemented error messages to notify users if the validation fails.
+
+### Changed
+
+- **Currency Field in Inventory Table and Dashboard**: by Rafly Ivan Khalfani
+
+  - Updated the inventory management section to display prices in a currency format.
+  - Modified the application to ensure all price displays are formatted according to the specified currency.
+
+- **Database Schema**:
+  - Updated the database schema to include the new trigger for payments and rentals.
+
+### Fixed
+
+- **Minor UI Improvements**:
+  - Improved form layouts for better user experience.
+  - Fixed minor bugs related to form submissions.
+
 ## Features
 
 - **User Registration and Authentication**: Secure user registration and login functionality.
 - **Inventory Management**: Add, edit, delete, and view cosplay costumes and accessories.
 - **Renting System**: Efficiently manage the renting process including checking availability, booking, and returns.
 - **Transaction Records**: Maintain detailed records of all transactions for auditing and reporting purposes.
-- **User Interface**: Intuitive and user-friendly interface for both admin and customers.
+- **User Interface**: Intuitive and user-friendly interface for admin.
 
 ## Getting Started
 
@@ -21,24 +55,27 @@ Fantasy Fittings is a comprehensive application designed to manage a cosplay ren
 ### Installation
 
 1. **Clone the Repository**:
-    ```sh
-    git clone https://github.com/yourusername/FantasyFittings.git
-    cd FantasyFittings
-    ```
+
+   ```sh
+   git clone https://github.com/yourusername/FantasyFittings.git
+   cd FantasyFittings
+   ```
 
 2. **Database Setup**:
-    - Create a MySQL database for the application.
-    - Import the database schema from the provided SQL file:
-      ```sh
-      mysql -u yourusername -p yourdatabase < schema.sql
-      ```
+
+   - Create a MySQL database for the application.
+   - Import the database schema from the provided SQL file:
+     ```sh
+     mysql -u yourusername -p yourdatabase < schema.sql
+     ```
 
 3. **Configure Database Connection**:
-    - Update the `koneksiDB` class with your MySQL database credentials.
+
+   - Update the `koneksiDB` class with your MySQL database credentials.
 
 4. **Build and Run the Application**:
-    - Open the project in NetBeans (or your preferred IDE).
-    - Build and run the project.
+   - Open the project in NetBeans (or your preferred IDE).
+   - Build and run the project.
 
 ## Usage
 
