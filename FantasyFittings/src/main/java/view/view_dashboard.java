@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /**
  *
@@ -812,7 +814,14 @@ public class view_dashboard extends javax.swing.JPanel {
             StringBuilder revenueResultStringBuilder = new StringBuilder();
             while (totalPemasukan.next()) {
                 int revenue = totalPemasukan.getInt(1); // Mengambil nilai pertama dari setiap baris
-                revenueResultStringBuilder.append("Rp. ").append(revenue); // Menggunakan StringBuilder untuk membangun String
+
+                // Format angka dengan titik setiap 3 angka
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                symbols.setGroupingSeparator('.');
+                DecimalFormat formatter = new DecimalFormat("#,###", symbols);
+
+                String formattedRevenue = formatter.format(revenue);
+                revenueResultStringBuilder.append("Rp. ").append(formattedRevenue); // Menggunakan StringBuilder untuk membangun String
             }
             
             
@@ -830,36 +839,43 @@ public class view_dashboard extends javax.swing.JPanel {
     };
     
     public void CountRevenueMonth() {
-    try {
-        // Query SQL untuk mengambil total pendapatan bulan ini
-        String pendapatan = "SELECT TotalIncomeThisMonth() AS totalPendapatan";
+        try {
+            // Query SQL untuk mengambil total pendapatan bulan ini
+            String pendapatan = "SELECT TotalIncomeThisMonth() AS totalPendapatan";
 
-        // Koneksi ke database
-        Connection penghubung = (Connection) koneksiDB.konfigurasi_koneksiDB();
+            // Koneksi ke database
+            Connection penghubung = (Connection) koneksiDB.konfigurasi_koneksiDB();
 
-        // Statement Query
-        Statement statement_sql = penghubung.createStatement();
+            // Statement Query
+            Statement statement_sql = penghubung.createStatement();
 
-        // Eksekusi Query
-        ResultSet totalPemasukan = statement_sql.executeQuery(pendapatan);
+            // Eksekusi Query
+            ResultSet totalPemasukan = statement_sql.executeQuery(pendapatan);
 
-        // Ekstraksi nilai dari ResultSet
-        StringBuilder revenueResultStringBuilder = new StringBuilder();
-        while (totalPemasukan.next()) {
-            int revenue = totalPemasukan.getInt("totalPendapatan"); // Mengambil nilai berdasarkan nama kolom
-            revenueResultStringBuilder.append("Rp. ").append(revenue); // Membangun string hasil
+            // Ekstraksi nilai dari ResultSet
+            StringBuilder revenueResultStringBuilder = new StringBuilder();
+            while (totalPemasukan.next()) {
+                int revenue = totalPemasukan.getInt("totalPendapatan"); // Mengambil nilai berdasarkan nama kolom
+
+                // Format angka dengan titik setiap 3 angka
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                symbols.setGroupingSeparator('.');
+                DecimalFormat formatter = new DecimalFormat("#,###", symbols);
+
+                String formattedRevenue = formatter.format(revenue);
+                revenueResultStringBuilder.append("Rp. ").append(formattedRevenue); // Membangun string hasil
+            }
+
+            // Konversi StringBuilder menjadi String
+            String revenueResult = revenueResultStringBuilder.toString();
+
+            // Menetapkan nilai pada label (pastikan label TotalPendapatanBulan sudah dideklarasikan)
+            TotalPendapatanBulan.setText(revenueResult);
+
+        } catch (Exception e) {
+            // Tangani kesalahan
+            e.printStackTrace();
         }
-
-        // Konversi StringBuilder menjadi String
-        String revenueResult = revenueResultStringBuilder.toString();
-
-        // Menetapkan nilai pada label (pastikan label TotalPendapatanBulan sudah dideklarasikan)
-        TotalPendapatanBulan.setText(revenueResult);
-
-    } catch (Exception e) {
-        // Tangani kesalahan
-        e.printStackTrace();
-    }
     }
 
 
