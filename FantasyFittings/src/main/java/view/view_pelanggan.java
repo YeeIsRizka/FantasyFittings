@@ -9,14 +9,21 @@ import autentikasi.Login;
 import com.mycompany.FantasyFittings.koneksiDB;
 import java.sql.*;
 import javax.swing.JOptionPane;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  *
- * @author Rizka Alfadillla
+ * @author Akwan Cakra
  */
 public class view_pelanggan extends javax.swing.JPanel {
-
+//    private JTable PelangganTable;
+    
     /**
      * Creates new form view_pelanggan
      */
@@ -42,6 +49,7 @@ public class view_pelanggan extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         SearchInput = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        ExportButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         PelangganTable = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -117,12 +125,25 @@ public class view_pelanggan extends javax.swing.JPanel {
             }
         });
 
+        ExportButton.setBackground(new java.awt.Color(0, 0, 0));
+        ExportButton.setForeground(new java.awt.Color(255, 255, 255));
+        ExportButton.setText("Export Data");
+        ExportButton.setMaximumSize(new java.awt.Dimension(91, 30));
+        ExportButton.setMinimumSize(new java.awt.Dimension(91, 30));
+        ExportButton.setPreferredSize(new java.awt.Dimension(91, 30));
+        ExportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ExportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SearchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +155,8 @@ public class view_pelanggan extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExportButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -394,7 +416,7 @@ public class view_pelanggan extends javax.swing.JPanel {
                 .addComponent(pn_body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-public void getData() {
+    public void getData() {
         DefaultTableModel model = new DefaultTableModel(new String[]{"#", "ID", "Name", "Email", "Alamat", "No. Telp", "Pinjaman Aktif"}, 0);
 
         try (Connection connection = koneksiDB.konfigurasi_koneksiDB()) {
@@ -781,8 +803,55 @@ public void getData() {
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    private void ExportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportButtonActionPerformed
+        try {
+            exportToExcel();
+            JOptionPane.showMessageDialog(null, "Berhasil mengekspor data pelanggan!.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mengekspor data pelanggan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ExportButtonActionPerformed
+
+    private void exportToExcel() {
+        DefaultTableModel model = (DefaultTableModel) PelangganTable.getModel();
+
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Data Pelanggan");
+
+        // Header
+        Row headerRow = sheet.createRow(0);
+        for (int i = 0; i < model.getColumnCount(); i++) {
+            headerRow.createCell(i).setCellValue(model.getColumnName(i));
+        }
+
+        // Data
+        for (int r = 0; r < model.getRowCount(); r++) {
+            Row row = sheet.createRow(r + 1);
+            for (int c = 0; c < model.getColumnCount(); c++) {
+                Object value = model.getValueAt(r, c);
+                if (value != null) {
+                    row.createCell(c).setCellValue(value.toString());
+                }
+            }
+        }
+
+        // Simpan workbook ke file
+        try (FileOutputStream fileOut = new FileOutputStream("data_pelanggan.xlsx")) {
+            workbook.write(fileOut);
+            System.out.println("Data berhasil diekspor ke Excel.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                workbook.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ExportButton;
     private javax.swing.JTable PelangganTable;
     private javax.swing.JTextField SearchInput;
     private javax.swing.JButton addButton;

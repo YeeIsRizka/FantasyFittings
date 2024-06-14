@@ -7,6 +7,8 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import autentikasi.Login;
 import com.mycompany.FantasyFittings.koneksiDB;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +18,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -85,6 +91,7 @@ public class view_pembayaran extends javax.swing.JPanel {
         jLabel26 = new javax.swing.JLabel();
         fieldCariPembayaran = new javax.swing.JTextField();
         cariPembayaran = new javax.swing.JButton();
+        ExportButton = new javax.swing.JButton();
 
         pn_body.setLayout(new java.awt.BorderLayout());
 
@@ -426,7 +433,7 @@ public class view_pembayaran extends javax.swing.JPanel {
                         .addComponent(cariPenyewaan))
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -475,6 +482,15 @@ public class view_pembayaran extends javax.swing.JPanel {
             }
         });
 
+        ExportButton.setBackground(new java.awt.Color(0, 0, 0));
+        ExportButton.setForeground(new java.awt.Color(255, 255, 255));
+        ExportButton.setText("Export Data");
+        ExportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -485,6 +501,8 @@ public class view_pembayaran extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1583, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ExportButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -501,9 +519,10 @@ public class view_pembayaran extends javax.swing.JPanel {
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26)
                     .addComponent(fieldCariPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cariPembayaran))
+                    .addComponent(cariPembayaran)
+                    .addComponent(ExportButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -546,12 +565,12 @@ public class view_pembayaran extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
+            .addGap(0, 729, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pn_body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-public void layarBersih(){
+    public void layarBersih(){
         namaPelanggan.setText("");
         noTelepon.setText("");
         outfit.setText("");
@@ -1018,8 +1037,55 @@ public void layarBersih(){
 
     }//GEN-LAST:event_cariPembayaranActionPerformed
 
+    private void ExportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportButtonActionPerformed
+        try {
+            exportToExcel();
+            JOptionPane.showMessageDialog(null, "Berhasil mengekspor data pembayaran!.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mengekspor data pembayaran: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ExportButtonActionPerformed
+
+    private void exportToExcel() {
+        DefaultTableModel model = (DefaultTableModel) tbl_pembayaran.getModel();
+
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Data Pembayaran");
+
+        // Header
+        Row headerRow = sheet.createRow(0);
+        for (int i = 0; i < model.getColumnCount(); i++) {
+            headerRow.createCell(i).setCellValue(model.getColumnName(i));
+        }
+
+        // Data
+        for (int r = 0; r < model.getRowCount(); r++) {
+            Row row = sheet.createRow(r + 1);
+            for (int c = 0; c < model.getColumnCount(); c++) {
+                Object value = model.getValueAt(r, c);
+                if (value != null) {
+                    row.createCell(c).setCellValue(value.toString());
+                }
+            }
+        }
+
+        // Simpan workbook ke file
+        try (FileOutputStream fileOut = new FileOutputStream("data_pembayaran.xlsx")) {
+            workbook.write(fileOut);
+            System.out.println("Data berhasil diekspor ke Excel.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                workbook.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ExportButton;
     private javax.swing.JButton bersihkanPembayaran;
     private javax.swing.JButton cariPembayaran;
     private javax.swing.JButton cariPenyewaan;
