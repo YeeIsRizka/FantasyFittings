@@ -420,8 +420,12 @@
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel24" pref="895" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="476" max="-2" attributes="0"/>
+                          <Component id="jLabel24" pref="865" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="278" max="-2" attributes="0"/>
+                          <Component id="hargaTersembunyi" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="totalTersembunyi" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="idPembayaran" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="idPenyewaan" min="-2" max="-2" attributes="0"/>
@@ -445,6 +449,8 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="idPenyewaan" alignment="1" max="32767" attributes="0"/>
                                       <Component id="idPembayaran" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="hargaTersembunyi" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="totalTersembunyi" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -477,6 +483,16 @@
                 <Component class="javax.swing.JLabel" name="idPembayaran">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID Pembayaran"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="totalTersembunyi">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="TotalTersembunyi"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="hargaTersembunyi">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="hargaTersembunyi"/>
                   </Properties>
                 </Component>
               </SubComponents>

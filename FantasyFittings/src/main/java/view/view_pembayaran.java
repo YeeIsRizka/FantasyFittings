@@ -14,8 +14,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Row;
@@ -77,6 +79,8 @@ public class view_pembayaran extends javax.swing.JPanel {
         jLabel25 = new javax.swing.JLabel();
         idPenyewaan = new javax.swing.JLabel();
         idPembayaran = new javax.swing.JLabel();
+        totalTersembunyi = new javax.swing.JLabel();
+        hargaTersembunyi = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_penyewaan = new javax.swing.JTable();
@@ -327,6 +331,10 @@ public class view_pembayaran extends javax.swing.JPanel {
 
         idPembayaran.setText("ID Pembayaran");
 
+        totalTersembunyi.setText("TotalTersembunyi");
+
+        hargaTersembunyi.setText("hargaTersembunyi");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -335,8 +343,12 @@ public class view_pembayaran extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
-                .addGap(476, 476, 476)
+                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+                .addGap(278, 278, 278)
+                .addComponent(hargaTersembunyi)
+                .addGap(18, 18, 18)
+                .addComponent(totalTersembunyi)
+                .addGap(18, 18, 18)
                 .addComponent(idPembayaran)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(idPenyewaan))
@@ -355,7 +367,9 @@ public class view_pembayaran extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(idPenyewaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idPembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(idPembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hargaTersembunyi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalTersembunyi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
 
@@ -587,6 +601,8 @@ public class view_pembayaran extends javax.swing.JPanel {
     private void readPembayaran(){
         idPembayaran.setVisible(false);
         idPenyewaan.setVisible(false);
+        hargaTersembunyi.setVisible(false);
+        totalTersembunyi.setVisible(false);
         
         DefaultTableModel data_pembayaran = new DefaultTableModel();
         data_pembayaran.addColumn("No");
@@ -607,9 +623,11 @@ public class view_pembayaran extends javax.swing.JPanel {
             ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
             
             
-            int i = 1;
+            int i = 1; 
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID")); 
             
             while (hasil_SQL.next()) {
+                String formattedTotalPembayaran = currencyFormat.format(hasil_SQL.getDouble(12));
                 data_pembayaran.addRow(new Object[]{
                     i++,
                     hasil_SQL.getString(1),
@@ -617,7 +635,7 @@ public class view_pembayaran extends javax.swing.JPanel {
                     hasil_SQL.getString(6),
                     hasil_SQL.getString(7),
                     hasil_SQL.getString(13),
-                    hasil_SQL.getString(12)
+                    formattedTotalPembayaran 
                   
                 });
                 tbl_pembayaran.setModel(data_pembayaran);
@@ -647,10 +665,13 @@ public class view_pembayaran extends javax.swing.JPanel {
             
             ResultSet hasil_SQL = statement_sql.executeQuery(query_data);
             
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+            
             
             int i = 1;
             
             while (hasil_SQL.next()) {
+                String formattedHarga = currencyFormat.format(hasil_SQL.getDouble(10));
                 data_pembayaran.addRow(new Object[]{
                     i++,
                     hasil_SQL.getString(1),
@@ -660,12 +681,33 @@ public class view_pembayaran extends javax.swing.JPanel {
                     hasil_SQL.getString(9),
                     hasil_SQL.getString(7),
                     hasil_SQL.getString(8),
-                    hasil_SQL.getString(10)
+                    formattedHarga
                 });
                 tbl_penyewaan.setModel(data_pembayaran);
             }
         } catch (Exception e){
         }
+    }
+    
+    public void getPenyewaanData(String idPenyewaan) {
+        try {
+        String query_data = "SELECT * FROM view_penyewaanPelanggan WHERE status = 'Disewakan' AND idPenyewaan = ?";
+
+        Connection penghubung = (Connection) koneksiDB.konfigurasi_koneksiDB();
+        PreparedStatement statement_sql = penghubung.prepareStatement(query_data);
+        statement_sql.setString(1, idPenyewaan);
+
+        ResultSet hasil_SQL = statement_sql.executeQuery();
+
+        if (hasil_SQL.next()) {
+            // Set data ke JTextField
+            this.hargaTersembunyi.setText(hasil_SQL.getString("hargaTotal"));
+        }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
     }
     
     public void getPenyewaanPembayaranData(String idPembayaran) {
@@ -687,6 +729,7 @@ public class view_pembayaran extends javax.swing.JPanel {
             this.tglPenyewaan.setText(hasil_SQL.getString("tanggalPenyewaan"));
             this.tglPengembalian.setText(hasil_SQL.getString("tanggalPengembalian"));
             this.jumlah.setText(hasil_SQL.getString("jumlah"));
+            this.totalTersembunyi.setText(hasil_SQL.getString("jumlahBayar"));
         }
 
         } catch (Exception e) {
@@ -872,7 +915,7 @@ public class view_pembayaran extends javax.swing.JPanel {
                 // Ambil data yang dimasukkan oleh pengguna
 
                 String idPenyewaan = this.idPenyewaan.getText();
-                String pembayaran = this.pembayaran.getText();
+                String pembayaran = this.hargaTersembunyi.getText();
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String tanggal = sdf.format( this.tanggal.getDate());
@@ -922,7 +965,7 @@ public class view_pembayaran extends javax.swing.JPanel {
                 // Ambil data yang dimasukkan oleh pengguna
                 String idPembayaran = this.idPembayaran.getText();
                 String idPenyewaan = this.idPenyewaan.getText();
-                String pembayaran = this.pembayaran.getText();
+                String pembayaran = this.totalTersembunyi.getText();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String tanggal = sdf.format( this.tanggal.getDate());
 
@@ -992,6 +1035,8 @@ public class view_pembayaran extends javax.swing.JPanel {
         this.pembayaran.setText(pembayaran);
         this.tanggal.setDate(null);
         this.idPembayaran.setText("");
+        
+        getPenyewaanData(idPenyewaan);
     }//GEN-LAST:event_tbl_penyewaanMouseClicked
 
     private void cariPenyewaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariPenyewaanActionPerformed
@@ -1104,6 +1149,7 @@ public class view_pembayaran extends javax.swing.JPanel {
     private javax.swing.JTextField fieldCariPembayaran;
     private javax.swing.JTextField fieldCariPenyewaan;
     private javax.swing.JButton hapusPembayaran;
+    private javax.swing.JLabel hargaTersembunyi;
     private javax.swing.JLabel idPembayaran;
     private javax.swing.JLabel idPenyewaan;
     private javax.swing.JLabel jLabel14;
@@ -1140,5 +1186,6 @@ public class view_pembayaran extends javax.swing.JPanel {
     private javax.swing.JTable tbl_penyewaan;
     private javax.swing.JTextField tglPengembalian;
     private javax.swing.JTextField tglPenyewaan;
+    private javax.swing.JLabel totalTersembunyi;
     // End of variables declaration//GEN-END:variables
 }
