@@ -22,6 +22,7 @@ public class view_pelanggan extends javax.swing.JPanel {
      */
     public view_pelanggan() {
         initComponents();
+        clearInputs();
         getData();
     }
 
@@ -466,6 +467,9 @@ public void getData() {
         detEmail.setText("E-mail...");
         detNomor.setText("No Telp...");
         detAlamat.setText("Alamat...");
+        addButton.setEnabled(true);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
     }
     
     private void SearchInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchInputFocusGained
@@ -523,6 +527,10 @@ public void getData() {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void PelangganTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PelangganTableMouseClicked
+        addButton.setEnabled(false);
+        editButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+        
         int baris = PelangganTable.rowAtPoint(evt.getPoint());
 
         int id = Integer.parseInt(PelangganTable.getValueAt(baris, 1).toString());

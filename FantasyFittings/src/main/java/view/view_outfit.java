@@ -43,6 +43,7 @@ public class view_outfit extends javax.swing.JPanel {
      */
     public view_outfit() {
         initComponents();
+        layar_bersih();
         baca_data();
     }
     
@@ -84,6 +85,7 @@ public class view_outfit extends javax.swing.JPanel {
         id_isi = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
@@ -136,7 +138,7 @@ public class view_outfit extends javax.swing.JPanel {
         jScrollPane1.setViewportView(view_data);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(6, 97, 233, 515);
+        jScrollPane1.setBounds(6, 152, 233, 460);
 
         img1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(img1);
@@ -271,6 +273,15 @@ public class view_outfit extends javax.swing.JPanel {
         jPanel2.add(jButton4);
         jButton4.setBounds(257, 564, 374, 48);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Refresh.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(20, 90, 30, 30);
+
         javax.swing.GroupLayout pn_bodyLayout = new javax.swing.GroupLayout(pn_body);
         pn_body.setLayout(pn_bodyLayout);
         pn_bodyLayout.setHorizontalGroup(
@@ -313,6 +324,9 @@ public class view_outfit extends javax.swing.JPanel {
     harga_isi.setText("");
     deskripsi_isi.setText("");
     img1.setIcon(null);
+    jButton1.setEnabled(true);
+    jButton2.setEnabled(false);
+    jButton3.setEnabled(false);
     }
     
     
@@ -415,6 +429,11 @@ public class view_outfit extends javax.swing.JPanel {
     
     String s;
     private void view_dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_view_dataMouseClicked
+        
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
+        
         int baris = view_data.rowAtPoint(evt.getPoint());
 
         String id_outfit = view_data.getValueAt(baris, 1).toString();
@@ -671,6 +690,11 @@ public class view_outfit extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        layar_bersih();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea deskripsi_isi;
@@ -684,6 +708,7 @@ public class view_outfit extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel2;

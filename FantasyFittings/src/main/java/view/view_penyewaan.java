@@ -760,7 +760,9 @@ public class view_penyewaan extends javax.swing.JPanel {
     }//GEN-LAST:event_baca_data_pelangganMouseClicked
 
     private void baca_data_penyewaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_baca_data_penyewaanMouseClicked
-        layar_bersih();
+        TambahButton.setEnabled(false);
+        EditButton.setEnabled(true);
+        HapusButton.setEnabled(true);
         
         int baris = baca_data_penyewaan.rowAtPoint(evt.getPoint());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -860,6 +862,9 @@ public class view_penyewaan extends javax.swing.JPanel {
         HargaTotal.setText("N/A");
         Status.setSelectedIndex(-1);
         updateTotalPrice();
+        TambahButton.setEnabled(true);
+        EditButton.setEnabled(false);
+        HapusButton.setEnabled(false);
     }
     
     

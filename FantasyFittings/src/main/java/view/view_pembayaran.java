@@ -560,6 +560,9 @@ public void layarBersih(){
         tglPengembalian.setText("");
         pembayaran.setText("");
         tanggal.setDate(null);
+        tambahPembayaran.setEnabled(true);
+        editPembayaran.setEnabled(false);
+        hapusPembayaran.setEnabled(false);
     }
     
     private void readPembayaran(){
@@ -943,6 +946,10 @@ public void layarBersih(){
 
     private void tbl_penyewaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_penyewaanMouseClicked
         // TODO add your handling code here:
+        tambahPembayaran.setEnabled(false);
+        editPembayaran.setEnabled(true);
+        hapusPembayaran.setEnabled(true);
+        
         int baris = tbl_penyewaan.rowAtPoint(evt.getPoint());
 
         // Ambil data dari kolom yang diperlukan
@@ -981,6 +988,10 @@ public void layarBersih(){
     private void tbl_pembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_pembayaranMouseClicked
         // TODO add your handling code here:
         // Ambil baris yang diklik
+        tambahPembayaran.setEnabled(false);
+        editPembayaran.setEnabled(true);
+        hapusPembayaran.setEnabled(true);
+        
         int baris = tbl_pembayaran.rowAtPoint(evt.getPoint());
 
         // Ambil data dari kolom yang diperlukan
